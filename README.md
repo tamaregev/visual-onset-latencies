@@ -1,6 +1,9 @@
 # visual-onset-latencies
-Sharing Matlab code for the onset latency analysis.
+Matlab code for the onset latency analysis.
+
 This code was written specifically for analysing subject ST18.
+
+
 There were 3 recording sessions termed here blocks B12, B13 and B14.
 
 Data files are available on OSF -
@@ -25,12 +28,8 @@ LPF.m
 remove_line_noise.m
 
 inside MainFolder download and keep the 3 folders - 
+
 B12\
 B13\
 B14\
 with all of their contents - these are the data structures.
-
-
-
-
-
