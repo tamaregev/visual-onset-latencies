@@ -1,1 +1,8 @@
-Here are the functions written by members of HCNL - Human Cognitive Neuroscience Laboratory of Prof. Leon Deouell, HUJI.
+Here are the functions written by members of HCNL - Human Cognitive Neuroscience Laboratory of Prof. Leon Deouell, HUJI.  
+  
+HPF.m by Edden Gerber  
+LPF.m by Edden Gerber  
+remove_line_noise.m by Alon Keren    
+ERPfigure.m by Leon Deouell    
+figextras.m by Leon deouell    
+varplot.m by Edden Gerber
