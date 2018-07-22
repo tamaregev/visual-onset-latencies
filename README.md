@@ -31,7 +31,8 @@ remove_line_noise.m by Alon Keren
 ERPfigure.m by Leon Deouell    
 figextras.m by Leon deouell    
 varplot.m by Edden Gerber  
-
+(see 'HCNL Lab functions' folder on the repository)  
+  
 inside MainFolder download and keep the 3 data folders, available on OSF -  
 B12\  
 B13\  
