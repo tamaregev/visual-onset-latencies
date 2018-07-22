@@ -9,7 +9,8 @@ Data files are available on OSF -
 The structure of libraries should be as follows -  
 
 \MainFolder\  
-keep here main analysis script - MasterScript_VOLST18_GH.m and run it, section by section, from here (GH stands for GitHub ;))  
+keep here main analysis script - MasterScript_VOLST18_GH.m and run it, section by section, from here  
+(GH stands for GitHub ;))  
 keep here also these functions:  
 PreProcST18_Block_GH.m    
 procEventsST18_GH.m  
