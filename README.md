@@ -24,7 +24,7 @@ PlotOnsetsOrderly_GH.m
 
 inside MainFolder create folder -  
 \HCNL Lab functions\  
-keep here the following functions, written by members of the lab of Prof. Leon Deouell (namely Leon Deouell, Edden Gerber and Alon Keren)  
+keep here the following functions, written by members of the lab of Prof. Leon Deouell   
 HPF.m by Edden Gerber  
 LPF.m by Edden Gerber  
 remove_line_noise.m by Alon Keren    
