@@ -4,7 +4,7 @@ Ran on Matlab 2016b, Windows computer.
 This code was written specifically for analysing subject ST18.  
 There were 3 recording sessions termed here blocks B12, B13 and B14.  
 
-Data files are available on OSF -  
+Data files will be publicly avaiable soon, for now please personally request.  
 
 The structure of libraries should be as follows -  
 
@@ -33,8 +33,10 @@ figextras.m by Leon deouell
 varplot.m by Edden Gerber  
 (see 'HCNL Lab functions' folder on the repository)  
   
-inside MainFolder download and keep the 3 data folders, available on OSF -  
+inside MainFolder download and keep the 3 data folders -  
 B12\  
 B13\  
 B14\  
 with all of their contents - these are the data structures.
+These data will soon be publicly available. For now, please request personally.
+
