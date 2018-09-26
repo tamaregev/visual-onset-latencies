@@ -1,8 +1,7 @@
 function [inside_Lgrid, inside_Ostrip, inside_LedgeUD, inside_LedgeLR, sides_LedgeUD, sides_LedgeLR, sides_Ostrip, cross_electrodes] = CSDelectMap( )
 %% written by Tamar Regev, lab of prof. Leon Deouell, HUJI
 %Electrode mapping for CSD reference
-%18/11/2014 adapted from - L:\Experiments\durationGamma\ECOG\Original Exp\Results\ST18\VisualStream\fastPreProc\calcCSDEdges.m
-%%
+
 inside_Lgrid=[10:15 18:23 26:31 34:39 42:47 50:55];
 inside_Ostrip=[66:69];
 inside_LedgeUD=[2:7 58:63];
