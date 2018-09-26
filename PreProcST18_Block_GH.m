@@ -1,17 +1,14 @@
 function [dataCAR, dataCSD]= PreProcST18_Block_GH(block,LP,HP,deg,causalflag)
 % written by Tamar Regev, lab of prof. Leon Deouell, HUJI
 
-% 18/11/2014 adapted from L:\Experiments\durationGamma\ECOG\Original Exp\Results\ST18\B12\Processed_data\VisualStream\PreProcessing\BasicPreProc.m
-% for using in MasterScript_VOLST18:
-% L:\Experiments\durationGamma\ECOG\Original Exp\Results\ST18\VisualStream\Final Results\MasterScript_VOLST18.m
-% ---This script works on the matrix raw_matB12_1000hz
 % inputs: block is a string e.g. - 'B12' ...
 %         LP and HP are cutoff frequencies for a low-pass and high-pass
 %         filter, respectively. If no filter is wanted, insert 0.
-% outputs:data both for CAR and CSD references 
-% 9 July 2017 - Tamar - added input parameters: 
-%                       deg - default is 4
-%                       causalflag default is false --> non causal
+%         deg - default is 4
+%         causalflag default is false --> non causal
+
+% outputs: data both for CAR and CSD references 
+
 %% inputs
 if ~exist('deg','var')
     deg = 4;
@@ -54,25 +51,12 @@ data.data=raw_mat(1:data.info.nelect,:);
 clear raw_mat;
 subj = data.info.subject_name;
 block = data.info.block_name;
-%preproc = tic;
 
 %% Subtract Average Baseline
-
 means = mean(data.data')';
 data.data=data.data-repmat(means, [1,length(data.data)]);
 data.info.meansubtract = 'yes';
- 
-%% de-trend
-% added to analysis 18/11/2014
-% checked and it seems that after de-trending the data looks more
-% tilted to I skipped it
-% edgeWindowSize=50;
-% for ch = 1:data.info.nelect
-%     startVal = mean(data.data(ch,1:edgeWindowSize));
-%     endVal = mean(data.data((end-edgeWindowSize + 1):end,ch));
-%     trend = linspace(startVal,endVal,length(data.data));
-%     data.data(ch,:) = blockData(ch,:) - trend;
-% end
+
 %% remove 60Hz noise 
 tic
 disp('removing line noise...')
