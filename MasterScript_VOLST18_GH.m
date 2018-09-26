@@ -18,13 +18,13 @@ permsNumber = 10000;%number of permutations
 switch gammaflag
     case false
         LP=0;HP=0;%no filter. Can change to include HP and LP filters
-        SaveFolderName = ['12-Jul-2017_nofilter_' num2str(permsNumber)];
+        SaveFolderName = [date '_' num2str(permsNumber)];
     case true
         %filter params:
         LP=0;HP=30;%filterring happens in preproc, and hilbert transform only in the procEventsST18_block.
         causalflag = true;deg = 4;
         ampflag = true;
-        SaveFolderName = ['14-Aug-2017_gammaAmp_causalHP' num2str(HP) '_deg' num2str(deg) '_' num2str(permsNumber)];%folder for gamma with informative text
+        SaveFolderName = [date '_gammaAmp_causalHP' num2str(HP) '_deg' num2str(deg) '_' num2str(permsNumber)];%folder for gamma with informative text
 end
 
 mkdir(MasterFolder,SaveFolderName);
