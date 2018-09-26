@@ -1,19 +1,8 @@
- % Master script - Visual Onset Latencies analysis for ST18 data
+% Master script - Visual Onset Latencies analysis for ST18 data
 % written by Tamar Regev, lab of prof. Leon Deouell, HUJI
 
-% 17/11/2014 - created this script for unifying all analysis for the paper.
-% The purpose is to reproduce the analysis, possibly changing parameters:
-% - the filter (BP 0.1-200 to none)
-% - add dynamic threshold to the temporal error calculation and figures
-% - reproduce all figures
-% 27/11/2014 - Tamar: changed mode to refmode because mode is a matlab
-% function so it caused calling her.
-% 14/12/2014 - Tamar: added the gammaflag - to add a hilbert transform when
-% I want to do the analysis on gamma band. The transform is done right
-% before the segmentation, and a HP cutoff should be chosen in the preproc
-% params.
-% 9/7/2017 - Tamar: I added parameters deg and causalflag to control params
-% of the filters. defaults - deg = 4, causalflag = false.
+% this is the main script unifying all onset latency analysis.
+
 %% Definitions:
 blocks = {'B12','B13','B14'};%this analysis is specific to the data of Patient ST18
 
@@ -24,6 +13,7 @@ addpath 'HCNL Lab functions';
 % parameters:
 gammaflag = false; %if you wanna run the analysis on gamma signals
 permsNumber = 10000;%number of permutations
+
 %create a folder to save all data:
 switch gammaflag
     case false
@@ -49,9 +39,7 @@ if ~exist('causalflag','var')
 end
 
 %% Pre processing
-% Scripts - CreateRawMatrix_B12.m created raw matrices:
-% raw_mat was saved as raw_matB12_1000.mat in the ST18_B12 folder
-% same for other blocks
+
 preproc = tic;
 
 for b = 1:length(blocks)
@@ -120,7 +108,7 @@ addms = 5;
 %permsNumber = 10000;
 for m=1:length(refmodes)
     refmode = refmodes{m};
-    %load([SaveFolder 'ResultsBootstrap' num2str(permsNumber) '_' refmode]);
+    %load([SaveFolder 'ResultsBootstrap' num2str(permsNumber) '_' refmode]);%if you wanna start from this sub-section
     PlotOnsetsOrderly_GH(refmode, SaveFolder, permsNumber, gammaflag, addms, ampflag );
     set(gcf,'name',[refmode '_' SaveFolderName],'NumberTitle', 'off')
 end
@@ -140,9 +128,7 @@ for m=1:length(refmodes)
 %for m = 2
     refmode = refmodes{m};
     filename = ['ResultsTable_' refmode '.xls'];
-%    load([SaveFolder filesep 'ResultsBootstrap4000_' refmode '.mat'])
     load([SaveFolderName filesep 'ResultsBootstrap' num2str(permsNumber) '_' refmode '.mat'])
-%     load([SaveFolder filesep 'info' refmode])
     load([SaveFolderName filesep 'info' refmode])
     switch refmode
         case 'CAR'
