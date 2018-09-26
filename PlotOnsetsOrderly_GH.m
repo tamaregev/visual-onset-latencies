@@ -88,14 +88,13 @@ end
                  p(4) = p(4)+0.02;
                  p(3) = p(3)+0.01;
                  set(h, 'pos', p);
-                 %if(indexplot(i)<=numelectrodes)
                 data = reshape(ERPtrialsTot(ch,sampwin,:),length(sampwin),n_trials)';
                 meanData = mean(data);len = length(meanData);
-                %ERPplusEBarSolidFill2(data, 1:400, [1 0 1], '-', 0.65,0.01) ;
                 varplot(timewin,data','ci',0.99);
                 hold on
                 xlim([fromx tox])
                 ylim([fromy toy])
+                    %other plotting options:
                     %set(gca,'xtick',[0:50:350],'ytick',[])
                     %set(gca,'XTickLabel',{'-100','-50','0','50','100','150','200','250'})
                 set(gca,'YTickLabel',{}) 
