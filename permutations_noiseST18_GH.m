@@ -1,10 +1,6 @@
 function [ p_max, p_min, value_max, value_min] = permutations_noiseST18_GH(Data1,perms,alpha)
 % written by Tamar Regev, lab of prof. Leon Deouell, HUJI
-% 20/11/2014 - adapted from L:\Experiments\durationGamma\ECOG\Original Exp\Results\ST18\VisualStream\permutationTest\permutations_noise.m
-% to be used in MasterScript_VOLST18
-% 24/11/2014 - Tamar: changed resolution of bars in the histogram to 0.01
-% 26/11/2014 - Tamar: found  terrible mistake! changed - p_min =
-% find(cumulative_min<alpha,1); to - p_min = find(cumulative_min<alpha,1,'last');
+
 %%
 hist_vector_max=zeros(perms,1);
 hist_vector_min=zeros(perms,1);

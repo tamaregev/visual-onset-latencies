@@ -1,11 +1,6 @@
 function [ ERPtrials, info ] = procEventsST18_block_GH(block, mode, SaveFolder, win, gammaflag, ampflag)
 % written by Tamar Regev, lab of prof. Leon Deouell, HUJI
-% 18/11/2014 - used by the function procEventsST18 (in MasterScript_VOLST18)
-% at L:\Experiments\durationGamma\ECOG\Original Exp\Results\ST18\VisualStream\Final Results\procEventsST18.m
-% 14/12/2014 - Tamar: Added gammaflag for calculation of the squared absolute part of the hilbert transform here. Becaue it has to happen just before segmentation 
-% 29/06/2017 - Tamar: thought that there was a mistake because no band pass
-% filter, but - found it in the preproc part as HP and LP
-%%
+
 %%
 if nargin<6
     ampflag = false;
@@ -35,7 +30,7 @@ end
     for i=1:2:nEvents*2
         stim(EEG.events(1,i).latency:EEG.events(1,i+1).latency)=1;
     end
-    if 0
+    if 0 % change to 1 in order to plot stimulus
     % figure
     % subplot(2,1,1)
     % plot(stim)
@@ -51,7 +46,7 @@ end
     for i=1:length(artifacts)
         artifact_times(artifacts(i,1)*1000:artifacts(i,2)*1000)=1;
     end
-    if 0
+    if 0 %change to 1 in order to plot stimulus and artifacts
     % figure
     % plot(stim)
     % title('stimulus')
@@ -67,7 +62,7 @@ end
         types(i,1)=types(i,1)/10;
         types(i,1)=(types(i,1)-mod(types(i,1),10))/10;
     end
-    if 0%this was for plotting and calculating stimulus properties, not necessary for the analysis.
+    if 0 %change to 1 for plotting and calculating stimulus properties, not necessary for the analysis.
     %--------Other stimulus properties - durations, SOA, ISI----
     % durations=zeros(nEvents,1);
     % for i=1:86
