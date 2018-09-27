@@ -12,7 +12,7 @@ addpath 'HCNL Lab functions';
 
 % parameters:
 gammaflag = false; %if you wanna run the analysis on gamma signals
-permsNumber = 10000;%number of permutations
+permsNumber = 4000;%number of permutations
 
 %create a folder to save all data:
 switch gammaflag
