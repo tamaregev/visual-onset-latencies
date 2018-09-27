@@ -1,19 +1,6 @@
 function [ event, onsets, perms, errInterval, t_values, p_max_arr, p_min_arr, minomax_arr, voltage_th_max, voltage_th_min, voltage_th_max_noise, voltage_th_min_noise] = onset_detectionST18_GH( refmode, ERPtrialsTot, permsNumber, alpha, SaveFolder, plotflag, gammaflag)
 % written by Tamar Regev, lab of prof. Leon Deouell, HUJI
 
-% 18/11/2014 - adapted from L:\Experiments\durationGamma\ECOG\Original Exp\Results\ST18\VisualStream\fastPreProc\onset_detection.m
-% for using in MasterScript
-% 25/11/2014 - Tamar: changed th to voltage_th - a dynamic threshold
-% tmax*SE = p_max_arr*SE
-% 26/11/2014 - Tamar: changed ind_ordered to ch_ordered and more in code of
-% plotting. Added - Retinotopy_ST18
-% 27/11/2014 - Tamar: changed mode to refmode because mode is a matlab
-% function so it caused calling her.
-% 14/12/2014 - Tamar: added gammaflag as a parametr for the function, to be
-% displayed on the graph.
-% 25/12/2014 - Tamar: changed numbers=info.selectedChannels to
-% 1:info.nelect for including bad and epileptic channels as well in the
-% total calculation
 %%
 load([SaveFolder 'info' refmode '.mat'])
 switch refmode
@@ -26,14 +13,11 @@ end
 
 %%-----------Assemble data with t ms baseline before event onset
 n_trials=size(ERPtrialsTot,3);
-%t=100;
-%ERPtrials_forplot = ERPtrialsTot(:,(301-t):600,:);
 
 % Separate noise and responses
 NoiseResponse={ERPtrialsTot(:,1:300,:)  ERPtrialsTot(:,301:600,:)};
 
-% for ALL CHANNELS bootstrapping noise!!
- 
+% for ALL CHANNELS bootstrapping noise!! 
 event={};
 perms=permsNumber;
 t_values=[];
@@ -72,16 +56,15 @@ for numelect = numbers
     %end
 end
 %% Estimate error from CI
-%     figure
+% figure
 tic
-errInterval=zeros(info.nelect,2);%[minIntervalBorder maxIntervalBorder]
+errInterval=zeros(info.nelect,2);
 for numelect = numbers
     disp(num2str(numelect))
     if ~isempty(event{numelect})
         data = reshape(ERPtrialsTot(numelect,301:600,:),300,n_trials)';
         data_noise = reshape(ERPtrialsTot(numelect,1:300,:),300,n_trials)';
         data_mean = nanmean(data);
-        %th=repmat(data_mean(event{numelect}),1,300);
         voltage_th_max(numelect,:) = p_max_arr(numelect,1)*std(data)/sqrt(size(data,1));
         voltage_th_max_noise(numelect,:) = p_max_arr(numelect,1)*std(data_noise)/sqrt(size(data,1));
         voltage_th_min(numelect,:) = p_min_arr(numelect,1)*std(data)/sqrt(size(data,1));
@@ -124,32 +107,31 @@ for numelect = numbers
             %pause
         end
         errInterval(numelect,3)=(errInterval(numelect,2)-errInterval(numelect,1))/2;
-        
-        %ERPplusEBarSolidFill2(data, 1:300, [1 0 1], '-', 0.65,0.01) ;
-%         subplot 122
-%         varplot(1:300,data','ci',0.99)
-%         hold on
-%         plot(voltage_th_max(numelect,:),'r')
-%         plot(voltage_th_min(numelect,:),'r')
-%         title(['channel ' num2str(numelect) ', minomax - ' num2str(minomax_arr(numelect))])
-%         plot(UpperCrosses,voltage_th(UpperCrosses),'*','MarkerSize',16,'Color','g')
-%         plot(LowerCrosses,voltage_th(LowerCrosses),'*','MarkerSize',16,'Color','g')
-%         plot(errInterval(numelect,1),voltage_th(errInterval(numelect,1)),'.','MarkerSize',16,'Color','k')
-%         plot(errInterval(numelect,2),voltage_th(errInterval(numelect,2)),'.','MarkerSize',16,'Color','k')
-%         plot(event{numelect},data_mean(event{numelect}),'.','MarkerSize',16,'Color','k')
-%         hold off
-%         subplot 121
-%         varplot(1:300,reshape(ERPtrialsTot(numelect,1:300,:),300,n_trials),'ci',0.99)
-%         hold on
-%         title(['noise'])
-%         plot(voltage_th_max_noise(numelect,:),'r')
-%         plot(voltage_th_min_noise(numelect,:),'r')
-%         hold off
-%         ERPfigure(gcf)
-%         pause
-    %close
+        if 0 %change to 1 and uncomment for plotting noise response and threshold using ERPfigure (press h for options)
+%             ERPfigure
+%             subplot 122
+%             varplot(1:300,data','ci',0.99)
+%             hold on
+%             plot(voltage_th_max(numelect,:),'r')
+%             plot(voltage_th_min(numelect,:),'r')
+%             title(['channel ' num2str(numelect) ', minomax - ' num2str(minomax_arr(numelect))])
+%             plot(UpperCrosses,voltage_th(UpperCrosses),'*','MarkerSize',16,'Color','g')
+%             plot(LowerCrosses,voltage_th(LowerCrosses),'*','MarkerSize',16,'Color','g')
+%             plot(errInterval(numelect,1),voltage_th(errInterval(numelect,1)),'.','MarkerSize',16,'Color','k')
+%             plot(errInterval(numelect,2),voltage_th(errInterval(numelect,2)),'.','MarkerSize',16,'Color','k')
+%             plot(event{numelect},data_mean(event{numelect}),'.','MarkerSize',16,'Color','k')
+%             hold off
+%             subplot 121
+%             varplot(1:300,reshape(ERPtrialsTot(numelect,1:300,:),300,n_trials),'ci',0.99)
+%             hold on
+%             title(['noise'])
+%             plot(voltage_th_max_noise(numelect,:),'r')
+%             plot(voltage_th_min_noise(numelect,:),'r')
+%             hold off
+%             linkaxes
+        end    
     end
     
 end
-display(['done error estimation in ' num2str(toc) ' sec.'])
+disp(['done error estimation in ' num2str(toc) ' sec.'])
 end %end the function
