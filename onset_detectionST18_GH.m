@@ -1,4 +1,4 @@
-function [ event, onsets, perms, errInterval, t_values, p_max_arr, p_min_arr, minomax_arr, voltage_th_max, voltage_th_min, voltage_th_max_noise, voltage_th_min_noise] = onset_detectionST18_GH( refmode, ERPtrialsTot, permsNumber, alpha, SaveFolder, plotflag, gammaflag)
+function [ event, perms, errInterval, t_values, p_max_arr, p_min_arr, minomax_arr, voltage_th_max, voltage_th_min, voltage_th_max_noise, voltage_th_min_noise] = onset_detectionST18_GH( refmode, ERPtrialsTot, permsNumber, alpha, SaveFolder, plotflag, gammaflag)
 % written by Tamar Regev, lab of prof. Leon Deouell, HUJI
 
 %%
